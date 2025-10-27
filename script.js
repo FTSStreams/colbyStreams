@@ -1,6 +1,6 @@
 class WagerLeaderboard {
     constructor() {
-        this.apiKey = null;
+        this.apiKey = 'c1d4f9dc2df3bf5ba5c72cd6aaa96afe9a5ddc4a8f43ef495d78b2875c980bf2';
         this.apiUrl = 'https://api.luxdrop.com/external/affiliates';
         this.affiliateCode = 'Colby';
         this.dateRange = {
@@ -13,42 +13,6 @@ class WagerLeaderboard {
         this.sortOrder = 'desc';
         
         this.initializeEventListeners();
-        this.loadEnvironmentAndStart();
-    }
-
-    async loadEnvironmentAndStart() {
-        try {
-            // Try to load API key from .env file
-            const response = await fetch('.env');
-            
-            if (!response.ok) {
-                throw new Error('Could not load .env file');
-            }
-            
-            const envText = await response.text();
-            
-            // Parse .env file
-            const envLines = envText.split('\n');
-            for (const line of envLines) {
-                if (line.startsWith('LUXDROP_API_KEY=')) {
-                    this.apiKey = line.split('=')[1].trim();
-                    break;
-                }
-            }
-            
-            if (!this.apiKey) {
-                throw new Error('API key not found in .env file');
-            }
-            
-            console.log('✅ API key loaded from .env file');
-            
-        } catch (error) {
-            console.warn('⚠️ Could not load .env file, using fallback API key');
-            // Fallback to hardcoded API key
-            this.apiKey = 'c1d4f9dc2df3bf5ba5c72cd6aaa96afe9a5ddc4a8f43ef495d78b2875c980bf2';
-        }
-        
-        // Start loading data
         this.loadAffiliateData();
     }
 
