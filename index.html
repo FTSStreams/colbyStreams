@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colby's Wager Leaderboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="title">
+                    <i class="fas fa-trophy"></i>
+                    Colby's Wager Leaderboard
+                </h1>
+                <p class="subtitle">Track your affiliate performance and climb the ranks</p>
+            </div>
+        </header>
+
+        <div class="leaderboard-container">
+            <div class="leaderboard-header">
+                <h2>
+                    <i class="fas fa-ranking-star"></i>
+                    Leaderboard Rankings
+                </h2>
+                <div class="sort-controls">
+                    <select id="sort-by">
+                        <option value="total_wagered">Total Wagered</option>
+                        <option value="total_earnings">Total Earnings</option>
+                        <option value="users_registered">Users Registered</option>
+                        <option value="code">Affiliate Code</option>
+                    </select>
+                    <button id="sort-order" class="btn-secondary">
+                        <i class="fas fa-sort-amount-down"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="leaderboard" id="leaderboard">
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Loading affiliate data...</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="error-message" id="error-message" style="display: none;">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span id="error-text"></span>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 Colby's Wager Leaderboard. Powered by LuxDrop API.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
