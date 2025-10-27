@@ -18,8 +18,13 @@ class WagerLeaderboard {
 
     async loadEnvironmentAndStart() {
         try {
-            // Load API key from .env file
+            // Try to load API key from .env file
             const response = await fetch('.env');
+            
+            if (!response.ok) {
+                throw new Error('Could not load .env file');
+            }
+            
             const envText = await response.text();
             
             // Parse .env file
@@ -35,13 +40,16 @@ class WagerLeaderboard {
                 throw new Error('API key not found in .env file');
             }
             
-            // Start loading data
-            this.loadAffiliateData();
+            console.log('✅ API key loaded from .env file');
             
         } catch (error) {
-            console.error('Error loading environment:', error);
-            this.showError('Failed to load configuration. Please check .env file.');
+            console.warn('⚠️ Could not load .env file, using fallback API key');
+            // Fallback to hardcoded API key
+            this.apiKey = 'c1d4f9dc2df3bf5ba5c72cd6aaa96afe9a5ddc4a8f43ef495d78b2875c980bf2';
         }
+        
+        // Start loading data
+        this.loadAffiliateData();
     }
 
     initializeEventListeners() {
